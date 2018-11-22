@@ -1,0 +1,88 @@
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="w3v4.css">
+    <link rel="stylesheet" type="text/css" href="view1.css">
+  </head>
+
+  <body>
+    <div id="titleBar">
+       <div id="appIconDiv">
+          <img id="appIcon" src="./icons/app/mainraw.png">
+       </div>
+
+       <p id="appTitle"> Sky Stream <span> - Stac Apps</span></p>
+
+       <div id="closeBtn" class="windowButtons"><img id="closeImg" class="windowButtonsImg" src="./icons/close/initial.png"></div>
+       <div id="maximizeBtn" class="windowButtons"><img id="maximizeImg" class="windowButtonsImg" src="./icons/maximize/initial.png"></div>
+       <div id="minimizeBtn" class="windowButtons"><img id="minimizeImg" class="windowButtonsImg" src="./icons/minimize/initial.png"></div>
+    </div>
+
+    <section id="tabs-section">
+        <p class="tabs" id="video-tabs">
+          <span id="videos-tab"> Videos </span>
+        </p>
+
+        <p class="tabs" id="music-tabs" style="display:none;">
+          <span id="all-songs-tab"> Songs </span>
+          <span id="albums-tab"> Albums </span>
+          <span id="artists-tab"> Artists </span>
+          <span id="playlists-tab"> Playlists </span>
+          <span id="genres-tab"> Genres </span>
+        </p>
+
+        <p class="tabs" id="photo-tabs" style="display:none;">
+          <span id="photo-albums-tab"> Photo Albums </span>
+          <span id="all-photos"> All Photos </span>
+        </p>
+
+        <p class="tabs" id="info-tabs" style="display:none;">
+          <span id="about-tab"> About </span>
+        </p>
+
+        <p class="tabs" id="settings-tabs" style="display:none;">
+          <span id="app-settings-tab"> App Settings </span>
+        </p>
+
+        <p class="tabs" id="account-tabs" style="display:none;">
+          <span id="myAccount-tab"> My Account </span>
+        </p>
+    </section>
+
+    <div id="sideBar">
+      <div id="sidebar-top">
+        <img class="sidebar-icons" id="videos-icon" src="./icons/Sidebar/videos.png">
+        <img class="sidebar-icons" id="audios-icon" src="./icons/Sidebar/songs.png">
+        <img class="sidebar-icons" id="photos-icon" src="./icons/Sidebar/photos1.png">
+      </div>
+
+      <div id="sidebar-bottom">
+        <img class="sidebar-icons" id="info-icon" src="./icons/Sidebar/info1.png">
+        <img class="sidebar-icons" id="settings-icon" src="./icons/Sidebar/settings1.png">
+        <!--img class="sidebar-icons" id="feedback-icon" src="./icons/Sidebar/feedback.png"-->
+        <img class="sidebar-icons" id="account-icon" src="./icons/Sidebar/account2.png">
+      </div>
+
+      <div id="sidebar-icons-marker"></div>
+    </div>
+
+    <div id="content-wrapper"></div>
+    <iframe id="other-sections"></iframe>
+
+    <div id="video-loading">
+        <div id="video-loading-bg"></div>
+        <img id="video-loading-img" src="./icons/app/mainraw.png">
+    </div>
+    
+    <button id="close-video">Cancel</button>
+    <div id="click-blocker"></div>
+
+    <div id="base-buttons">
+      <button id="sign-in">Start</button>
+      <button id="devTools">Dev Tools</button>
+      <button id="reload">Reload</button>
+    </div>
+    <!---->
+    <!--Include all scripts here. To be run after page rendered.-->
+    <script src="index.js"></script>
+  </body>
+</html>

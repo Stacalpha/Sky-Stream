@@ -1,0 +1,65 @@
+{
+  "name": "sky-stream",
+  "productName": "Sky Stream",
+  "version": "1.0.0",
+  "description": "Video streaming from cloud storage",
+  "main": "main.js",
+  "scripts": {
+                "start": "electron .",
+                "dist": "build",
+                "dist-all": "build -wlm --ia32 --x64",
+                "test": "echo \"Error: no test specified\" && exit 1"
+              },
+  "author": "Stac <feranmiakinlade@gmail.com>",
+  "license": "ISC",
+  "repository": {
+                  "type": "git",
+                  "url": "git://github.com/Stacalpha/Sky-Stream.git"
+                },
+  "dependencies": {
+                    "googleapis": "^27.0.0"
+                  },
+  "devDependencies": {
+                        "electron": "^3.0.8",
+                        "electron-builder": "^20.34.0"
+                      },
+  "build": {
+              "appId": "com.stac.mediaplayer",
+              "files": [
+                          "**/*",
+                          "!**/node_modules/*/{CHANGELOG.md,README.md,README,readme.md,readme}",
+                          "!**/node_modules/*/{test,__tests__,tests,powered-test,example,examples}",
+                          "!**/node_modules/*.d.ts",
+                          "!**/node_modules/.bin",
+                          "!**/*.{iml,o,hprof,orig,pyc,pyo,rbc,swp,csproj,sln,xproj}",
+                          "!.editorconfig",
+                          "!**/._*",
+                          "!**/{.DS_Store,.git,.hg,.svn,CVS,RCS,SCCS,.gitignore,.gitattributes}",
+                          "!**/{__pycache__,thumbs.db,.flowconfig,.idea,.vs,.vscode,.nyc_output}",
+                          "!**/{appveyor.yml,.travis.yml,circle.yml}",
+                          "!**/{npm-debug.log,yarn.lock,.yarn-integrity,.yarn-metadata.json}",
+                          "!**/icons/unused",
+                          "!**/Googleapi Secrets/{others,credentials.json}",
+                          "!**/*.{bak,code-workspace}"
+                        ],
+              "nsis": {
+                        "oneClick": "false",
+                        "allowToChangeInstallationDirectory": "true"
+                      },
+              "win": {
+                        "target": "NSIS",
+                        "icon": "icons/app/main.ico"
+                      }, 
+					    "linux": {
+                          "target": [
+                                      "deb",
+                                      "rpm"
+                                    ],
+                          "synopsis": "Play videos directly from google drive."
+                        },
+              "mac": {
+                        "target": "zip",
+                        "icon": "icons/app/main.icns"
+                      }
+            }
+}

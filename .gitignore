@@ -1,0 +1,11 @@
+#directories
+node_modules
+googleapi
+icons/Sidebar/Others
+dist
+unused
+.vscode
+
+#files
+*.log
+*.bak

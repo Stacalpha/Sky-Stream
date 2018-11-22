@@ -1,0 +1,410 @@
+*
+	{
+	  margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+		user-select: none;
+  }
+
+::-webkit-scrollbar
+    {
+        display: none;
+    }
+
+body
+    {
+      border: 1px solid rgb(255, 3, 129);
+	    background-color: rgb(40, 40, 40);
+      color: whitesmoke;
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
+			position: relative;
+      width: 100%;
+      height: 100%;
+			overflow: hidden;
+			position: relative;
+    }
+
+#titleBar
+    {
+      height: 40px;
+      width: 100%;
+      -webkit-app-region: drag;
+      position: sticky;
+      top: 0px;
+			z-index: 2;
+      transition: opacity 1s ease;
+    }
+
+#appiconDiv
+    {
+      position: absolute;
+      background-color: rgb(255, 3, 129);
+      width: 55px;
+      height: 55px;
+      /*padding: 20px;*/
+      border-radius: 5px 55px 55px 55px;
+      top: 10px;
+      left: 10px;
+    }
+
+#appIcon
+    {
+      position: relative;
+      top: 10%;
+      left: 9%;
+      width: 80%;
+      height: 70%;
+    }
+
+#appTitle
+    {
+			position: absolute;
+      color: rgba(236, 163, 163, 0.733);
+      font-weight: bold;
+      font-size: 1.2em;
+			top: 11px;
+      left: 75px;
+    }
+
+#appTitle > span
+    {
+      font-style: italic;
+      font-weight: lighter;
+      color: rgba(197, 155, 155, 0.6);
+      font-size: 0.58em;
+      margin-left: 5px;
+      position: relative;
+      bottom: 1px;
+    }
+
+.windowButtons
+    {
+        float: right;
+        height: 30px;
+        width: 45px;
+        padding: 6.5px 15px;
+        -webkit-app-region: no-drag;
+        margin-top: 0.4px;
+    }
+
+.windowButtonsImg
+    {
+        height: 15px;
+        width: 15px;
+    }
+
+#minimizeImg
+    {
+       padding-top: 5px;
+    }
+
+/*#closeImg
+    {
+        height: 18px;
+        width: 20px;
+    }
+
+#closeBtn
+    {
+        padding: 5px 20px 8px 12px;
+    }*/
+
+#content-wrapper
+	{
+		overflow-x: hidden;
+		padding-left: 10px;
+		padding-right: 2px;
+
+		height: calc(100vh - 85px);
+		width: calc(100vw - 57px); /*5px space to the left, 2px space on the right, plus 50px for the sidebar.*/
+		position: fixed;
+		left: 55px; /*50px sidebar plus 5px gutter*/
+		top: 84px; /*Positioned below the title bar*/
+	}
+
+#other-sections
+	{
+		display: none;
+		border: none;
+		overflow-x: hidden;
+		padding-left: 10px;
+		padding-right: 2px;
+
+		height: calc(100vh - 85px);
+		width: calc(100vw - 57px); /*5px space to the left, 2px space on the right, plus 50px for the sidebar.*/
+		position: fixed;
+		left: 55px; /*50px sidebar plus 5px gutter*/
+		top: 84px; /*Positioned below the title bar*/
+	}
+
+.tabs
+  {
+		position: absolute;
+		bottom: calc(100vh - 80px);
+    left: 61px;
+		width: calc(100vw - 66px);
+    color: rgba(255, 255, 255, 0.226);
+    font-size: 1.3em;
+		border-bottom: 1px solid rgba(0, 0, 0, 0.6);
+	  padding-left: 14px;
+  }
+
+.tabs span
+  {
+      padding: 5px 10px 0 10px;
+			float: left;
+			cursor: default;
+	    background-color: rgb(40, 40, 40); /*Set background color to remove transparency and allow covering the bottom border.*/
+
+			color: rgba(255, 255, 255, 0.226);
+			border: none;
+			margin-bottom: initial;
+  }
+
+#videos-tab /*The initially selected tab on app startup.*/
+	{
+		color: rgba(255, 255, 255, 0.8);
+		border: 1px solid rgba(0, 0, 0, 0.6);
+		border-bottom: none;
+		margin-bottom: -1px;
+	}
+
+#sideBar
+  {
+      height: calc(100vh - 79px);
+      width: 50px;
+			padding: 10px;
+      position: fixed;
+      left: 1px;
+      top: 78px;
+      background-color: rgb(30, 30, 30);
+      box-shadow: -1px 1px 1px 1px rgba(0, 0, 0, 0.562) inset, -1px 1px 1px 1px rgba(0, 0, 0, 0.377) inset;
+  }
+
+.sidebar-icons
+	{
+		display: block;
+		width: 30px;
+		height: 30px;
+		margin: 20px 0 20px 0;
+		object-fit: fill;
+	}
+
+.sidebar-icons:hover, .sidebar-icons:focus{transform: scale(1.1);}
+.sidebar-icons:active{transform: scale(1);}
+
+#sidebar-icons-marker
+	{
+		width: 46px;
+		height: 40px;
+		background-color: rgba(255, 3, 129, 0.11);
+		border-left: 5px solid rgba(255, 3, 129, 0.85);
+		position: absolute;
+		left: 0;
+		top: 20px;
+	}
+
+#sidebar-top
+	{
+		position: absolute;
+		top: 5px;
+		z-index: 2;
+	}
+
+#sidebar-top > .sidebar-icons
+	{
+		margin-bottom: 30px;
+	}
+
+#sidebar-bottom
+		{
+			position: absolute;
+			bottom: -5px;
+			z-index: 2;
+		}
+/*Action buttons at base of window for testing purposes*/
+#base-buttons
+    {
+        position: fixed;
+        bottom: 5px;
+        left: 40%;
+        z-index: 1;
+    }
+#sign-in{visibility: hidden}
+
+.inline-blocks-wrapper
+	{
+		width: 100%;
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		overflow-x: scroll;
+	}
+
+.inline-blocks-wrapper::after
+	{
+		content: "";
+		margin-left: 5px;
+		padding: 5px;
+	}
+
+.inline-blocks-wrapper::before
+	{
+		content: "";
+		margin-right: 5px;
+		padding: 5px;
+	}
+
+.inline-block-element:first-child
+	{
+		margin-left: 0 !important;
+	}
+
+.inline-block-element
+	{
+		margin-left: 37px;
+    display: inline-block;
+    flex-shrink: 0;
+	}
+
+.video-card
+    {
+        width: 35.6vh;
+        height: 40vh;
+        position: relative;
+        border-radius: 10px;
+        background-color: rgb(50, 50, 50);
+        box-shadow: 0 0 10px 1px rgba(0,0,0,0.2), 0 0 20px 1px rgba(0,0,0,0.19);
+    }
+
+.video-card > div
+    {
+        position: absolute;
+        bottom: 10px;
+        overflow: hidden;
+
+        transition: all 1s;
+    }
+
+.thumbnail
+    {
+        box-shadow: 1px -4px 5px 1px rgba(0, 0, 0, 0.212), -1px -3px 5px 1px rgba(0, 0, 0, 0.178);
+        border-radius: 10px 10px 0 0;
+        width: 100%;
+        height: 50%;
+        position: absolute;
+        top: 0;
+				left: 0;
+        object-fit: cover;
+        transition: all 1s;
+    }
+
+.video-group
+    {
+        width: 100%;
+        padding: 15px 0;
+        overflow-x: hidden;
+    }
+
+.video-group > .inline-blocks-wrapper
+    {
+        padding: 10px 0;
+    }
+
+.video-group > p
+    {
+        width: 100%;
+        margin-bottom: 3px;
+    }
+
+@keyframes loading-bg
+    {
+        from
+            {
+                opacity: 0.1;
+                box-shadow: 0 0 0 0 rgba(0,0,0,0), 0 0 0 0 rgba(0,0,0,0);
+            }
+        to
+            {
+                opacity: 0.8;
+                box-shadow: 0 0 15px 1px rgba(0,0,0,0.5), 0 0 20px 1px rgba(0,0,0,0.4);
+            }
+    }
+
+@keyframes loading-img
+    {
+        from
+            {
+                opacity: 0.2;
+            }
+        to
+            {
+                opacity: 1;
+            }
+    }
+
+#video-loading
+    {
+        position: absolute;
+        z-index: 3;
+        visibility: hidden;
+        overflow: hidden;
+        background-color: transparent;
+        opacity: 0;
+
+        width: 10vw;
+        height: 10vw;
+        border-radius: 2px 10vw 10vw 10vw;
+        top: calc(50vh - (10vw/2));
+        left: calc(50vw - (10vw/2));
+        border: none;
+    }
+#video-loading-bg
+    {
+        background-color: rgb(255, 3, 129);
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        opacity: 0;
+    }
+#video-loading-img
+    {
+        opacity: 0.1;
+        position: relative;
+        top: 10%;
+        left: 9%;
+        width: 80%;
+        height: 70%;
+        z-index: 2;
+    }
+
+#close-video
+    {
+        -webkit-app-region: no-drag;
+
+        position: absolute;
+        bottom: 90vh;
+        left: 10vw;
+        z-index: 2;
+				transition: all 1s ease-in;
+
+        display: none;
+    }
+
+#click-blocker
+    {
+        opacity: 0;
+        display: none;
+        z-index: 1;
+        transition: opacity 3s ease;
+
+        width: 100vw;
+        height: 100vh;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: rgb(27, 4, 16);
+    }
