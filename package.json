@@ -1,65 +1,75 @@
 {
   "name": "sky-stream",
-  "productName": "Sky Stream",
-  "version": "1.0.0",
-  "description": "Video streaming from cloud storage",
+  "productName": "Media Player",
+  "version": "1.1.0",
+  "description": "Media Player. Play local videos. \n(Support for cloud streaming is discontinued.)",
   "main": "main.js",
   "scripts": {
-                "start": "electron .",
-                "dist": "build",
-                "dist-all": "build -wlm --ia32 --x64",
-                "test": "echo \"Error: no test specified\" && exit 1"
-              },
+    "start": "electron .",
+    "dist": "build",
+    "dist-all": "build -wlm --ia32 --x64",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "sky-stream": "main.js"
+  },
+  "preferGlobal": true,
   "author": "Stac <feranmiakinlade@gmail.com>",
   "license": "ISC",
   "repository": {
-                  "type": "git",
-                  "url": "git://github.com/Stacalpha/Sky-Stream.git"
-                },
+    "type": "git",
+    "url": "git://github.com/Stacalpha/Sky-Stream.git"
+  },
   "dependencies": {
-                    "googleapis": "^27.0.0"
-                  },
+    "electron": "^4.1.1"
+  },
   "devDependencies": {
-                        "electron": "^3.0.8",
-                        "electron-builder": "^20.34.0"
-                      },
+    "babel-cli": "^6.26.0",
+    "babel-preset-react-app": "^3.1.2",
+    "electron-builder": "^20.34.0"
+  },
   "build": {
-              "appId": "com.stac.mediaplayer",
-              "files": [
-                          "**/*",
-                          "!**/node_modules/*/{CHANGELOG.md,README.md,README,readme.md,readme}",
-                          "!**/node_modules/*/{test,__tests__,tests,powered-test,example,examples}",
-                          "!**/node_modules/*.d.ts",
-                          "!**/node_modules/.bin",
-                          "!**/*.{iml,o,hprof,orig,pyc,pyo,rbc,swp,csproj,sln,xproj}",
-                          "!.editorconfig",
-                          "!**/._*",
-                          "!**/{.DS_Store,.git,.hg,.svn,CVS,RCS,SCCS,.gitignore,.gitattributes}",
-                          "!**/{__pycache__,thumbs.db,.flowconfig,.idea,.vs,.vscode,.nyc_output}",
-                          "!**/{appveyor.yml,.travis.yml,circle.yml}",
-                          "!**/{npm-debug.log,yarn.lock,.yarn-integrity,.yarn-metadata.json}",
-                          "!**/icons/unused",
-                          "!**/Googleapi Secrets/{others,credentials.json}",
-                          "!**/*.{bak,code-workspace}"
-                        ],
-              "nsis": {
-                        "oneClick": "false",
-                        "allowToChangeInstallationDirectory": "true"
-                      },
-              "win": {
-                        "target": "NSIS",
-                        "icon": "icons/app/main.ico"
-                      }, 
-					    "linux": {
-                          "target": [
-                                      "deb",
-                                      "rpm"
-                                    ],
-                          "synopsis": "Play videos directly from google drive."
-                        },
-              "mac": {
-                        "target": "zip",
-                        "icon": "icons/app/main.icns"
-                      }
-            }
+    "appId": "com.stac.mediaplayer",
+    "files": [
+      "**/*",
+      "!**/node_modules/*/{CHANGELOG.md,README.md,README,readme.md,readme}",
+      "!**/node_modules/*/{test,__tests__,tests,powered-test,example,examples}",
+      "!**/node_modules/*.d.ts",
+      "!**/node_modules/.bin",
+      "!**/*.{iml,o,hprof,orig,pyc,pyo,rbc,swp,csproj,sln,xproj}",
+      "!.editorconfig",
+      "!**/._*",
+      "!**/{.DS_Store,.git,.hg,.svn,CVS,RCS,SCCS,.gitignore,.gitattributes}",
+      "!**/{__pycache__,thumbs.db,.flowconfig,.idea,.vs,.vscode,.nyc_output}",
+      "!**/{appveyor.yml,.travis.yml,circle.yml}",
+      "!**/{npm-debug.log,yarn.lock,.yarn-integrity,.yarn-metadata.json}",
+      "!**/icons/unused",
+      "!**/Googleapi Secrets/{others,credentials.json}",
+      "!**/*.{bak,code-workspace}"
+    ],
+    "nsis": {
+      "oneClick": "false",
+      "allowToChangeInstallationDirectory": "true"
+    },
+    "win": {
+      "target": "NSIS",
+      "icon": "icons/app/main.ico"
+    },
+    "linux": {
+      "target": [
+        "deb",
+        "rpm"
+      ],
+      "synopsis": "A pretty media player."
+    },
+    "mac": {
+      "target": "zip",
+      "icon": "icons/app/main.icns"
+    }
+  },
+  "bugs": {
+    "url": "https://github.com/Stacalpha/Sky-Stream/issues"
+  },
+  "homepage": "https://github.com/Stacalpha/Sky-Stream#readme",
+  "keywords": ["media", "videos", "music"]
 }

@@ -2,6 +2,8 @@
   <head>
     <link rel="stylesheet" type="text/css" href="w3v4.css">
     <link rel="stylesheet" type="text/css" href="view1.css">
+    <meta http-equiv="Content-Security-Policy" content="default-src filesystem 'self' 'unsafe-inline'">
+    <!--meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline'"-->
   </head>
 
   <body>
@@ -10,7 +12,11 @@
           <img id="appIcon" src="./icons/app/mainraw.png">
        </div>
 
-       <p id="appTitle"> Sky Stream <span> - Stac Apps</span></p>
+       <h2 id="appTitle"> Media Player 
+         <a href="feranmi.name.ng" target="_blank" rel="noopener"> <!--ToDo: Make link open in a new browser window.-->
+            - by Stac
+         </a>
+       </h2>
 
        <div id="closeBtn" class="windowButtons"><img id="closeImg" class="windowButtonsImg" src="./icons/close/initial.png"></div>
        <div id="maximizeBtn" class="windowButtons"><img id="maximizeImg" class="windowButtonsImg" src="./icons/maximize/initial.png"></div>
@@ -23,7 +29,7 @@
         </p>
 
         <p class="tabs" id="music-tabs" style="display:none;">
-          <span id="all-songs-tab"> Songs </span>
+          <span id="all-songs-tab"> All Songs </span>
           <span id="albums-tab"> Albums </span>
           <span id="artists-tab"> Artists </span>
           <span id="playlists-tab"> Playlists </span>
@@ -50,39 +56,54 @@
 
     <div id="sideBar">
       <div id="sidebar-top">
-        <img class="sidebar-icons" id="videos-icon" src="./icons/Sidebar/videos.png">
-        <img class="sidebar-icons" id="audios-icon" src="./icons/Sidebar/songs.png">
-        <img class="sidebar-icons" id="photos-icon" src="./icons/Sidebar/photos1.png">
+        <div class="sidebar-icons selected-sidebar-icon" id="videos-icon">
+          <img src="./icons/Sidebar/videos.png">
+        </div>
+        <div class="sidebar-icons" id="audios-icon">
+          <img src="./icons/Sidebar/songs.png">
+        </div>
+        <div class="sidebar-icons" id="photos-icon">        
+          <img src="./icons/Sidebar/photos1.png">
+        </div>
       </div>
 
       <div id="sidebar-bottom">
-        <img class="sidebar-icons" id="info-icon" src="./icons/Sidebar/info1.png">
-        <img class="sidebar-icons" id="settings-icon" src="./icons/Sidebar/settings1.png">
-        <!--img class="sidebar-icons" id="feedback-icon" src="./icons/Sidebar/feedback.png"-->
-        <img class="sidebar-icons" id="account-icon" src="./icons/Sidebar/account2.png">
+        <div class="sidebar-icons" id="info-icon">        
+          <img src="./icons/Sidebar/info1.png">
+        </div>
+        <div class="sidebar-icons" id="settings-icon">        
+          <img src="./icons/Sidebar/settings1.png">
+        </div>
+        <!--<div class="sidebar-icons" id="feedback-icon">        
+          <img src="./icons/Sidebar/feedback.png">
+        </div-->
+        <div class="sidebar-icons" id="account-icon">        
+          <img src="./icons/Sidebar/account2.png">
+        </div>
       </div>
-
-      <div id="sidebar-icons-marker"></div>
     </div>
 
     <div id="content-wrapper"></div>
     <iframe id="other-sections"></iframe>
 
-    <div id="video-loading">
+    <!--div id="video-loading">
         <div id="video-loading-bg"></div>
         <img id="video-loading-img" src="./icons/app/mainraw.png">
-    </div>
+    </div-->
     
-    <button id="close-video">Cancel</button>
+    <button id="close-video">Close</button>
     <div id="click-blocker"></div>
 
     <div id="base-buttons">
-      <button id="sign-in">Start</button>
       <button id="devTools">Dev Tools</button>
       <button id="reload">Reload</button>
     </div>
+
+    <!--div id="react-test" style="position: fixed; bottom: 2px; left: 50vw;"></div-->
     <!---->
     <!--Include all scripts here. To be run after page rendered.-->
+    <!--script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script-->
     <script src="index.js"></script>
   </body>
 </html>

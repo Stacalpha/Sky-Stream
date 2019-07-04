@@ -1,5 +1,5 @@
-"# Sky-Stream" 
-An Electron.js application. Uses the google drive api to stream videos directly from a users cloud storage.
+#Sky-Stream
+An Electron.js application.
 
 Support for music and other media to be added in the future.
 
