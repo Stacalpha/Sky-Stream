@@ -1,7 +1,7 @@
 {
   "name": "sky-stream",
-  "productName": "Media Player",
-  "version": "1.1.0",
+  "productName": "Stac Media Player",
+  "version": "1.1.1",
   "description": "Media Player. Play local videos. \n(Support for cloud streaming is discontinued.)",
   "main": "main.js",
   "scripts": {
@@ -13,7 +13,6 @@
   "bin": {
     "sky-stream": "main.js"
   },
-  "preferGlobal": true,
   "author": "Stac <feranmiakinlade@gmail.com>",
   "license": "ISC",
   "repository": {
@@ -71,5 +70,5 @@
     "url": "https://github.com/Stacalpha/Sky-Stream/issues"
   },
   "homepage": "https://github.com/Stacalpha/Sky-Stream#readme",
-  "keywords": ["media", "videos", "music"]
+  "keywords": ["media", "videos", "music", "player"]
 }

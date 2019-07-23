@@ -1,25 +1,30 @@
 console.warn(`Media Player v1.1.0 - Beta.
 Created by Stac
-https://feranmi.name.ng`);
+https://feranmi.name.ng
 
-const electron = require("electron"),
-      ipc = electron.ipcRenderer,
-      thisWindow = electron.remote.getCurrentWindow();
+Package home page:
+https://www.npmjs.com/package/sky-stream`);
 
-var contentWrapper = document.querySelector("#content-wrapper"),
+var electron = require("electron"),
+    ipc = electron.ipcRenderer,
+    thisWindow = electron.remote.getCurrentWindow(),
+
+    contentWrapper = document.querySelector("#content-wrapper"),
     body = document.querySelector('body'),
     titleBar = document.querySelector('#titleBar'),
+    closeVideoButton = document.getElementById("close-video"),
+    clickBlocker = document.getElementById("click-blocker");
+    //appIconDiv = document.getElementById("appIconDiv");
+
+    /** Window buttons */
+    maxicon = "./icons/maximize/initial.png", //Maximize icon, to be shown when window is at initial size.
+    resticon = "./icons/restore/initial.png", //Restore icon, to be show when window is maximized.
+    windowButtons = document.querySelectorAll(".windowButtons");
+    
     //Video frame.
     //videoLoading = document.getElementById("video-loading"),
     //loadingBg = document.getElementById("video-loading-bg"),
     //loadingImg = document.getElementById("video-loading-img"),
-    closeVideoButton = document.getElementById("close-video"),
-    clickBlocker = document.getElementById("click-blocker");
-  //appIconDiv = document.getElementById("appIconDiv");
-    //Window buttons
-    maxicon = "./icons/maximize/initial.png", //Maximize icon, to be shown when window is at initial size.
-    resticon = "./icons/restore/initial.png", //Restore icon, to be show when window is maximized.
-    windowButtons = document.querySelectorAll(".windowButtons");
 
 closeVideoButton.onclick = (e)=>{
   //ipc.send('close-video');
@@ -35,11 +40,7 @@ document.ondragstart = ()=>{
   }
 }
 
-//Base buttons
-document.querySelector("#devTools").onclick = ()=> thisWindow.toggleDevTools();
-document.getElementById('reload').onclick = ()=>{ /*location.reload();*/ ipc.send('reload'); }
-
-//Start windowButtons event listeners. 
+//windowButtons event listeners. 
 for  (let x=0; x<windowButtons.length; x++){
   windowButtons[x].onmouseover = (e)=>{
     //Highlight the button
@@ -50,11 +51,11 @@ for  (let x=0; x<windowButtons.length; x++){
     let newimg = document.querySelector(selector).src.replace(/initial/, "onhover");
     //Switch the icon
     document.querySelector(selector).src = newimg;
-    //Scale down maximize icon.
+    /*Scale down maximize icon.
     if (e.currentTarget.id == "maximizeBtn"){ //Scale down the white img.
       document.getElementById("maximizeImg").style.height = "13px";
       document.getElementById("maximizeImg").style.width = "13px";
-    }
+    }*/
   }
   windowButtons[x].onmouseout = (e)=>{
     //Remove background color
@@ -140,14 +141,14 @@ function VideoCard(fileInfo){
     newFolderDiv.setAttribute("id", folderDivId);
     newFolderDiv.className = "video-group";
 
-    let folderLabel = document.createElement("p");
+    /*let folderLabel = document.createElement("p");
     let label = document.createTextNode('My Videos');
     folderLabel.appendChild(label);
+    newFolderDiv.appendChild(folderLabel);*/
 
     let videoCardsWrapper = document.createElement("div");
     videoCardsWrapper.className = "inline-blocks-wrapper";
 
-    newFolderDiv.appendChild(folderLabel);
     newFolderDiv.appendChild(videoCardsWrapper);
     contentWrapper.appendChild(newFolderDiv);
   }
@@ -157,6 +158,7 @@ function VideoCard(fileInfo){
 
   this.rootDiv.innerHTML =
     `<video class="thumbnail"> <source src="${fileInfo.path}"> </video>
+    <img src="./icons/play.png">
     <div class="w3-panel">
       <p class="video-title">${fileInfo.name}</p>
       <p class="video-length">00:00:00</p>
@@ -171,8 +173,16 @@ var card, cardClone, thumbnail, cardLabel, initialP, winDimension, frame, leftP,
 function loadVideo(cardId){
   card = document.getElementById(cardId);
   cardClone = card.cloneNode(true);
+
+  cardClone.id = `${cardId}-clone`;
+  cardClone
+    .querySelector('.thumbnail + img') //The play icon on the thumbnails.
+    .style.display = 'none';
+  cardClone.classList.remove("inline-block-element");
+
   thumbnail = cardClone.querySelector('.thumbnail');
   cardLabel = cardClone.querySelector('div');
+
   initialP = card.getBoundingClientRect();  //Get the current coordinates of the card in relation to the viewport. This is the starting point for the transition.
   winDimension = body.getBoundingClientRect();
   frame = { //Final dimensions of the card at transition end. This is the same position as the video frame window.
@@ -181,8 +191,7 @@ function loadVideo(cardId){
     width: (80/100) * winDimension.width,
     height: (80/100) * winDimension.height
   }
-  cardClone.id = `${cardId}-clone`;
-  cardClone.classList.remove("inline-block-element");
+
   body.appendChild(cardClone);
   //card.style.visibility = 'hidden';
   card.style.opacity = '0';
@@ -360,7 +369,7 @@ infoIcon.onclick = (e)=>{
 settingsIcon.onclick = (e)=>{
   otherSections.style.display = "block";
   contentWrapper.style.opacity = "0";
-  otherSections.src = "WIP.html";
+  otherSections.src = "settings.html";
   currentTabsBar.style.display = "none";
   thisTabsBar = document.getElementById("settings-tabs");
   thisTabsBar.style.display = "initial";
@@ -370,21 +379,6 @@ settingsIcon.onclick = (e)=>{
   selectedSidebarIcon.classList.remove('selected-sidebar-icon');
   settingsIcon.classList.add('selected-sidebar-icon');
   selectedSidebarIcon = settingsIcon;
-}
-
-accountIcon.onclick = (e)=>{
-  otherSections.style.display = "block";
-  contentWrapper.style.opacity = "0";
-  otherSections.src = "WIP.html";
-  currentTabsBar.style.display = "none";
-  thisTabsBar = document.getElementById("account-tabs");
-  thisTabsBar.style.display = "initial";
-  currentTabsBar = thisTabsBar;
-  switchTab(thisTabsBar.firstElementChild);
-
-  selectedSidebarIcon.classList.remove('selected-sidebar-icon');
-  accountIcon.classList.add('selected-sidebar-icon');
-  selectedSidebarIcon = accountIcon;
 }
 
 //IPC Event Listeners.
@@ -402,24 +396,40 @@ ipc.on('files-list', (event, files) => {
       `No supported videos found in the default Videos directory.
       ${electron.remote.app.getPath('videos')}`
     );
+
   files.forEach((videoFile, index)=>{
     videoFile.id = `local-${index}`;
-    var videoCard = new VideoCard(videoFile, true);
+    var videoCard = new VideoCard(videoFile);
+
     videoCard.rootDiv.onclick = (e)=>{
       if (e.target.classList.contains("thumbnail"))
         loadVideo(videoCard.cardId);
     }
+
+    //let videoElement = document.querySelector(`#${videoCard.cardId} video`);
+    //videoElement.addEventListener('durationchange', ()=>{
+    
     videoCard.parentDiv.appendChild(videoCard.rootDiv);
-    setTimeout(()=>{
-      let videoElement = document.querySelector(`#${videoCard.cardId} video`);
-      let durationMinutes = Math.floor(videoElement.duration / 60) + ' Minutes';
-      if (durationMinutes > 15)
-        videoElement.currentTime = 5;
-      else videoElement.currentTime = 1;
-      document
-        .querySelector(`#${videoCard.cardId} .video-length`)
-        .innerHTML = durationMinutes;
-    }, 1000); //Wait one second for video to load before retrieving the duration.
+    
+    document
+      .querySelector(`#${videoCard.cardId} > video`)
+      .addEventListener('durationchange', (e)=>{
+        if (e.target.duration > 20)
+          e.target.currentTime = 10;
+        else 
+          e.target.currentTime = 2;
+        
+        let duration = { //Calculate duration in HH:MM:SS
+          raw: e.target.duration,
+          seconds: Math.floor(e.target.duration) % 60,
+          minutes:  Math.floor(e.target.duration / 60) % 60,
+          hours: Math.floor(Math.floor(e.target.duration / 60) / 60)
+        }
+
+        document
+          .querySelector(`#${videoCard.cardId} .video-length`)
+          .innerHTML = `${duration.hours}:${('0'+duration.minutes).slice(-2)}:${('0'+duration.seconds).slice(-2)}`; //A little hack to force 2 digits.
+    });
   });
 });
 
